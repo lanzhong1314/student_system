@@ -40,9 +40,8 @@ export class StudentIndexComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
     this.studentService.getStudents().subscribe(data => {
-      console.log(data)
+      this.table.dataSource = data
     })
   }
 
@@ -62,6 +61,10 @@ export class StudentIndexComponent implements AfterViewInit {
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
 })
 export class StudentDeleteDialog {
-  constructor(public dialogRef: MatDialogRef<StudentDeleteDialog>) {
+  constructor(public dialogRef: MatDialogRef<StudentDeleteDialog>, private studentService: StudentService) {
+  }
+
+  deleteStudent() {
+  // this.studentService.deleteStudent()
   }
 }
