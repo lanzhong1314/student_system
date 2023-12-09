@@ -8,18 +8,25 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   providedIn: 'root'
 })
 export class StudentService {
+  baseUrl = "http://127.0.0.1:8080/student"
 
   constructor(private http: HttpClient) {
   }
 
   getStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>("http://localhost:4200/student").pipe(
+    return this.http.get<Student[]>(this.baseUrl).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getStudentById(id: number): Observable<Student> {
+    return this.http.get<Student>(`${this.baseUrl}/${id}`).pipe(
       catchError(this.handleError)
     )
   }
 
   createStudent(student: Student): Observable<Student> {
-    return this.http.post<Student>("this.heroesUrl", student)
+    return this.http.post<Student>(this.baseUrl, student)
       .pipe(
         catchError(this.handleError)
       );
@@ -27,15 +34,14 @@ export class StudentService {
 
 
   updateStudent(id: number, student: Student): Observable<Student> {
-    return this.http.put<Student>("", student)
+    return this.http.put<Student>(`${this.baseUrl}/${id}`, student)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   deleteStudent(id: number): Observable<unknown> {
-    // const url = `${this.heroesUrl}/${id}`; // DELETE api/heroes/42
-    return this.http.delete("")
+    return this.http.delete(`${this.baseUrl}/${id}`)
       .pipe(
         catchError(this.handleError)
       );

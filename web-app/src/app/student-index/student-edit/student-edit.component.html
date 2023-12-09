@@ -2,11 +2,11 @@
   <mat-grid-tile></mat-grid-tile>
   <mat-grid-tile colspan="3">
     <div class="example-container">
-      <form [formGroup]="options">
+      <form [formGroup]="student" (ngSubmit)="editStudent()">
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Number</mat-label>
-            <input matInput placeholder="student number">
+            <input matInput placeholder="student number" [formControl]="numberControl">
             <mat-icon matSuffix>pin</mat-icon>
           </mat-form-field>
         </div>
@@ -14,7 +14,7 @@
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="student name">
+            <input matInput placeholder="student name" [formControl]="nameControl">
             <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
         </div>
@@ -22,11 +22,11 @@
         <div>
           <div>
             <label>sex </label>
-            <mat-radio-group [formControl]="floatLabelControl">
-              <mat-radio-button value="auto">
+            <mat-radio-group [formControl]="sexControl">
+              <mat-radio-button [value]="1">
                 <mat-icon>man</mat-icon>
               </mat-radio-button>
-              <mat-radio-button value="always">
+              <mat-radio-button [value]="0">
                 <mat-icon>woman</mat-icon>
               </mat-radio-button>
             </mat-radio-group>
@@ -36,13 +36,13 @@
         <div>
           <mat-form-field>
             <mat-label>address</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput [formControl]="addressControl"></textarea>
           </mat-form-field>
         </div>
 
         <div>
           <button mat-raised-button routerLink="/student">Cancel</button>
-          <button mat-raised-button style="float: right">Add</button>
+          <button mat-raised-button style="float: right" color="primary" type="submit">Add</button>
         </div>
       </form>
     </div>

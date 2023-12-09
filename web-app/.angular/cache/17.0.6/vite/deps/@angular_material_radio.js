@@ -2,6 +2,9 @@ import {
   UniqueSelectionDispatcher
 } from "./chunk-253XZ7QQ.js";
 import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-TB2TYW5T.js";
+import {
   FocusMonitor,
   MatCommonModule,
   MatRipple,
@@ -16,9 +19,6 @@ import {
   coerceNumberProperty
 } from "./chunk-JQATC3DX.js";
 import "./chunk-GWEQSICP.js";
-import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-TB2TYW5T.js";
 import {
   CommonModule
 } from "./chunk-DSTCECV6.js";

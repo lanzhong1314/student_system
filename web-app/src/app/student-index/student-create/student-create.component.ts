@@ -10,6 +10,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {Location} from '@angular/common';
+import {StudentService} from "../../../services/student.service";
+import {Student} from "../../../common/student";
 
 @Component({
   selector: 'app-student-create',
@@ -31,7 +33,6 @@ import {Location} from '@angular/common';
   styleUrl: './student-create.component.css'
 })
 export class StudentCreateComponent {
-  hideRequiredControl = new FormControl(false);
   numberControl = new FormControl("");
   nameControl = new FormControl("");
   addressControl = new FormControl("");
@@ -43,11 +44,14 @@ export class StudentCreateComponent {
     sex: this.sexControl,
   });
 
-  constructor(private _formBuilder: FormBuilder, private location: Location) {
+  constructor(private _formBuilder: FormBuilder, private location: Location, private studentService: StudentService) {
   }
 
   createStudent() {
-    console.log(this.student.value)
-    this.location.back()
+    this.studentService.createStudent(this.student.value as Student).subscribe(
+      _ => {
+        this.location.back()
+      }
+    )
   }
 }
