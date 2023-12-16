@@ -8,12 +8,19 @@ import jakarta.persistence.Id;
 @Entity
 public class Study {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
     private String studyname;
 
     public Study() {
     }
 
     public Study(String studyname) {
+        this.studyname = studyname;
+    }
+
+    public Study(Long id, String studyname) {
+        this.id = id;
         this.studyname = studyname;
     }
 
@@ -35,5 +42,21 @@ public class Study {
 
     public String toString() {
         return "Study{studyname = " + studyname + "}";
+    }
+
+    /**
+     * 获取
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 设置
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 }
