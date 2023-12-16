@@ -1,8 +1,6 @@
 package com.lanzhong.student_system;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -10,19 +8,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-@SpringBootApplication
 @RestController
-public class DemoApplication {
-
-    ArrayList<Student> list = new ArrayList<Student>();
-
+public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
-
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-    }
-
     @GetMapping("/student")
     public ArrayList<Student> getAllStudent() {
         return (ArrayList<Student>) this.studentRepository.findAll();
@@ -37,7 +26,6 @@ public class DemoApplication {
         }
         return stuOptional.get();
     }
-
     @PostMapping("/student")
     public Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
@@ -63,4 +51,3 @@ public class DemoApplication {
         return this.studentRepository.save(stu);
     }
 }
-
